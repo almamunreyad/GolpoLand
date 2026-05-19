@@ -15,13 +15,48 @@ if (!empty($is_preview)) {
   return;
 }
 
-$block_title  = get_field('block_title');
-$show_slider  = !empty(get_field('show_slider'));
-$background   = get_field('background') ?: 'white';
-$cta_link     = get_field('cta_link');
-$source       = get_field('book_source') ?: 'manual';
+$block_title = get_field('block_title');
+$show_slider = !empty(get_field('show_slider'));
+$background  = get_field('background') ?: 'white';
+$cta_link    = get_field('cta_link');
+$source      = get_field('book_source') ?: 'manual';
 
 $class_name .= ' bg-' . $background;
+
+// Normalize data into groups regardless of source
+$groups = [];
+
+if ($source === 'manual') {
+  $raw      = get_field('manual_books') ?: [];
+  $post_ids = array_map(fn($p) => is_object($p) ? $p->ID : $p, $raw);
+  if (!empty($post_ids)) {
+    $groups[] = ['posts' => $post_ids, 'cat' => null, 'cat_id' => null];
+  }
+} else {
+  foreach (get_field('book_categories') ?: [] as $cat_id) {
+    $category = get_term($cat_id, 'category');
+    if (!$category || is_wp_error($category)) continue;
+    $books = get_posts([
+      'post_type'      => 'post',
+      'posts_per_page' => -1,
+      'orderby'        => 'date',
+      'order'          => 'DESC',
+      'fields'         => 'ids',
+      'tax_query'      => [[
+        'taxonomy' => 'category',
+        'field'    => 'term_id',
+        'terms'    => $cat_id,
+      ]],
+    ]);
+    if (!empty($books)) {
+      $groups[] = ['posts' => $books, 'cat' => $category, 'cat_id' => $cat_id];
+    }
+  }
+}
+
+// Class names differ by mode — markup stays the same
+$container_class = $show_slider ? 'swiper categories-books-swiper' : 'books-grid';
+$item_class      = $show_slider ? 'swiper-slide book-item' : 'book-item';
 ?>
 
 <section class="<?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?>>
@@ -31,136 +66,45 @@ $class_name .= ' bg-' . $background;
       <h2 class="block-title"><?php echo esc_html($block_title); ?></h2>
     <?php endif; ?>
 
-    <?php if ($source === 'manual') :
-      $posts = get_field('manual_books') ?: [];
-    ?>
+    <?php foreach ($groups as $group) : ?>
 
-      <?php if (!empty($posts)) : ?>
+      <?php if ($group['cat']) : ?>
+        <div class="category-group">
+          <h3 class="category-title"><?php echo esc_html($group['cat']->name); ?></h3>
+        <?php endif; ?>
 
-        <?php if ($show_slider) : ?>
-          <div class="swiper categories-books-swiper">
-            <div class="swiper-wrapper">
-              <?php foreach ($posts as $post) :
-                $post_id   = is_object($post) ? $post->ID : $post;
-                $permalink = get_permalink($post_id);
-                $title     = get_the_title($post_id);
-                $thumb_id  = get_post_thumbnail_id($post_id);
-                $thumb_url = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'medium') : '';
-              ?>
-                <div class="swiper-slide">
-                  <div class="book-item">
-                    <a class="bookCover" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
-                      <?php if ($thumb_url) : ?>
-                        <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy">
-                      <?php endif; ?>
-                    </a>
-                    <h4 class="book-title">
-                      <a href="<?php echo esc_url($permalink); ?>"><?php echo esc_html($title); ?></a>
-                    </h4>
-                  </div>
-                </div>
-              <?php endforeach; ?>
-            </div>
+        <div class="<?php echo esc_attr($container_class); ?>">
+          <?php if ($show_slider) : ?><div class="swiper-wrapper"><?php endif; ?>
 
-            <div class="swiper-pagination"></div>
-          </div>
-
-        <?php else : ?>
-          <div class="books-grid">
-            <?php foreach ($posts as $post) :
-              $post_id   = is_object($post) ? $post->ID : $post;
+            <?php foreach ($group['posts'] as $post_id) :
               $permalink = get_permalink($post_id);
               $title     = get_the_title($post_id);
-              $thumb_id  = get_post_thumbnail_id($post_id);
-              $thumb_url = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'medium') : '';
             ?>
-              <div class="book-item">
-                <a class="bookCover" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
-                  <?php if ($thumb_url) : ?>
-                    <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy">
-                  <?php endif; ?>
-                </a>
+              <div class="<?php echo esc_attr($item_class); ?>">
+                <?php if (has_post_thumbnail($post_id)) : ?>
+                  <a class="bookCover" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
+                    <?php echo get_the_post_thumbnail($post_id, 'medium'); ?>
+                  </a>
+                <?php endif; ?>
                 <h4 class="book-title">
                   <a href="<?php echo esc_url($permalink); ?>"><?php echo esc_html($title); ?></a>
                 </h4>
               </div>
             <?php endforeach; ?>
-          </div>
-        <?php endif; ?>
-      <?php endif; ?>
-
-    <?php else :
-      $category_ids = get_field('book_categories') ?: [];
-    ?>
-
-      <?php if (!empty($category_ids)) : ?>
-        <?php foreach ($category_ids as $cat_id) :
-          $category = get_term($cat_id, 'category');
-          if (!$category || is_wp_error($category)) continue;
-
-          $books = get_posts([
-            'post_type'      => 'post',
-            'posts_per_page' => -1,
-            'orderby'        => 'date',
-            'order'          => 'DESC',
-            'tax_query'      => [[
-              'taxonomy' => 'category',
-              'field'    => 'term_id',
-              'terms'    => $cat_id,
-            ]],
-          ]);
-
-          if (empty($books)) continue;
-        ?>
-          <div class="category-group">
-            <h3 class="category-title"><?php echo esc_html($category->name); ?></h3>
 
             <?php if ($show_slider) : ?>
-              <div class="swiper categories-books-swiper">
-                <div class="swiper-wrapper">
-                  <?php foreach ($books as $book) : ?>
-                    <div class="swiper-slide">
-                      <div class="book-item">
-                        <?php if (has_post_thumbnail($book->ID)) : ?>
-                          <a class="bookCover" href="<?php echo esc_url(get_permalink($book->ID)); ?>">
-                            <?php echo get_the_post_thumbnail($book->ID, 'medium'); ?>
-                          </a>
-                        <?php endif; ?>
-                        <h4 class="book-title">
-                          <a href="<?php echo esc_url(get_permalink($book->ID)); ?>"><?php echo esc_html($book->post_title); ?></a>
-                        </h4>
-                      </div>
-                    </div>
-                  <?php endforeach; ?>
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
+            </div>
+            <div class="swiper-pagination"></div><?php endif; ?>
+        </div>
 
-            <?php else : ?>
-              <div class="books-grid">
-                <?php foreach ($books as $book) : ?>
-                  <div class="book-item">
-                    <?php if (has_post_thumbnail($book->ID)) : ?>
-                      <a href="<?php echo esc_url(get_permalink($book->ID)); ?>">
-                        <?php echo get_the_post_thumbnail($book->ID, 'medium'); ?>
-                      </a>
-                    <?php endif; ?>
-                    <h4 class="book-title">
-                      <a href="<?php echo esc_url(get_permalink($book->ID)); ?>"><?php echo esc_html($book->post_title); ?></a>
-                    </h4>
-                  </div>
-                <?php endforeach; ?>
-              </div>
-            <?php endif; ?>
-
-            <a href="<?php echo esc_url(get_category_link($cat_id)); ?>" class="view-all-link">
-              View All <?php echo esc_html($category->name); ?>
-            </a>
-          </div>
-        <?php endforeach; ?>
+        <?php if ($group['cat']) : ?>
+          <a href="<?php echo esc_url(get_category_link($group['cat_id'])); ?>" class="view-all-link">
+            View All <?php echo esc_html($group['cat']->name); ?>
+          </a>
+        </div>
       <?php endif; ?>
 
-    <?php endif; ?>
+    <?php endforeach; ?>
 
     <?php if ($cta_link) : ?>
       <div class="cta-wrap">
