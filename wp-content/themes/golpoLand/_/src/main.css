@@ -1,35 +1,87 @@
-/* @import url("https://use.typekit.net/lvf8nog.css"); */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 
 @import "tailwindcss";
-@import "./_base.css";
-@import "./_components.css";
-@import "./_blocks.css";
 @import "./_navigation.css";
 
 @source "../../../../../markup";
 @source "../../";
 
-@theme {
-  /* --font-roboto: "Roboto", sans-serif;
-  --font-alliance: "Alliance No.2", sans-serif;
-  --font-monospace: "Space Mono", monospace;
+/* ── Design tokens ──────────────────────────────────────── */
+:root {
+  /* Font families */
+  --font-noto: "Noto Sans", sans-serif;
 
-  --text-13: 13px; */
 
-  /* --tracking-02: 0.2px; */
-
-  /* --color-Pearl: #e0e0e0;
-
-  --Chrome-Gradient: linear-gradient(270deg, #393840 0%, #e0e0e0 50%, #393840 100%);
-
-  --breakpoint-sm: 575.98px; */
+  --orange: #ff8a00;
+  --orange-dark: #fbba02;
+  --orange-light: #fbba02;
+  --grey-dark: #b9bac7;
+  --grey-light: #e4e5ed;
+  --on-start: #ffab4c;
+  --on-end: #cbcde5;
+  --on-text: #333;
+  --pill-radius: 9999px;
 }
 
+/* ── Tailwind v4 theme ──────────────────────────────────── */
+@theme inline {
+  /* Typography */
+  --font-noto: var(--font-noto);
+
+  /* Semantic surface colours */
+  --color-orange: var(--orange);
+  --color-orange-dark: var(--orange-dark);
+  --color-orange-light: var(--orange-light);
+  --color-grey-dark: var(--grey-dark);
+  --color-grey-light: var(--grey-light);
+  --color-on-start: var(--on-start);
+  --color-on-end: var(--on-end);
+  --color-text: var(--text);
+}
+
+/* ── Global base ────────────────────────────────────────── */
+html,
 body {
-  /* @apply flex flex-col min-h-screen font-normal font-alliance text-base md:text-lg text-Pearl bg-Kraken overflow-x-hidden; */
+  @apply text-lg bg-white text-text overflow-x-hidden h-full font-noto font-normal leading-[1.7];
 }
 
-/* .floating-header {
-  @apply bg-Kraken;
-} */
+.holder {
+  @apply max-w-300 w-full mx-auto px-3.75 min-[641px]:px-5 min-[1192px]:px-7.5;
+
+}
+
+::selection {
+  background-color: #d0e6ff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #313844;
+  border-radius: 4px;
+}
+
+/* Fade-up animation for content sections */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.3s ease both;
+}

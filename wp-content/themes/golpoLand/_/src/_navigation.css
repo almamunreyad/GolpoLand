@@ -1,0 +1,3 @@
+.main-header {
+  @apply relative w-full text-base z-[999] shadow-none;
+}
