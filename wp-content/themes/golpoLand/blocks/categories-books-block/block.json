@@ -1,0 +1,24 @@
+{
+  "apiVersion": 2,
+  "name": "acf/categories-books-block",
+  "title": "Categories Books Block",
+  "description": "A custom block for displaying books in categories.",
+  "category": "websure-blocks",
+  "icon": "portfolio",
+  "keywords": ["categories", "books", "display"],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "categories-books-block.php"
+  },
+  "supports": {
+    "align": false,
+    "anchor": true,
+    "mode": true
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "is_preview": true
+    }
+  }
+}

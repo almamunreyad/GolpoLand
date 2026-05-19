@@ -57,65 +57,66 @@ function skylarks_gutenberg_color_palette()
 
 add_action('after_setup_theme', 'skylarks_gutenberg_color_palette');
 
-add_filter('allowed_block_types_all', 'skylarks_allowed_block_types_all', 10, 2);
+// add_filter('allowed_block_types_all', 'skylarks_allowed_block_types_all', 10, 2);
 
-function skylarks_allowed_block_types_all($allowed_blocks, $post)
-{
+// function skylarks_allowed_block_types_all($allowed_blocks, $post)
+// {
 
-    $allowed_blocks = array(
-        // -- Common
-        'core/paragraph',
-        'core/image',
-        'core/heading',
-        //(Deprecated) core/subhead — Subheading
-        // 'core/gallery',
-        'core/list',
-        'core/list-item',
-        'core/quote',
-        //'core/audio',
-        // 'core/cover',
-        'core/file',
-        'core/video',
-        // -- Formatting
-        'core/table',
-        //  'core/verse',
-        'core/code',
-        //'core/freeform', // Classic
-        // 'core/html', // Custom HTML
+//     $allowed_blocks = array(
+//         // -- Common
+//         'core/paragraph',
+//         'core/image',
+//         'core/heading',
+//         //(Deprecated) core/subhead — Subheading
+//         // 'core/gallery',
+//         'core/list',
+//         'core/list-item',
+//         'core/quote',
+//         //'core/audio',
+//         // 'core/cover',
+//         'core/file',
+//         'core/video',
+//         // -- Formatting
+//         'core/table',
+//         //  'core/verse',
+//         'core/code',
+//         //'core/freeform', // Classic
+//         // 'core/html', // Custom HTML
 
-        // -- Layout
-        //  'core/button',
-        // 'core/columns', // Columns
-        // 'core/media-text', // Media and Text
-        // 'core/more',
-        //core/nextpage — Page break
-        'core/separator',
-        'core/spacer',
+//         // -- Layout
+//         //  'core/button',
+//         // 'core/columns', // Columns
+//         // 'core/media-text', // Media and Text
+//         // 'core/more',
+//         //core/nextpage — Page break
+//         'core/separator',
+//         'core/spacer',
 
-        // -- Embeds
-        'core/embed', // Disabled becuase HTML block can cover other embeds, this only asks for URL
-        'core-embed/twitter',
-        'core-embed/youtube',
+//         // -- Embeds
+//         'core/embed', // Disabled becuase HTML block can cover other embeds, this only asks for URL
+//         'core-embed/twitter',
+//         'core-embed/youtube',
 
-        'core-embed/vimeo',
+//         'core-embed/vimeo',
 
-        // --- Reusable
-        'core/block',
-        'core/template',
-        'gravityforms/form',
-
-
-        // --- Custom/ACF
-        'acf/featured-books-block',
+//         // --- Reusable
+//         'core/block',
+//         'core/template',
+//         'gravityforms/form',
 
 
+//         // --- Custom/ACF
+//         'acf/featured-books-block',
+//         'acf/categories-books-block',
 
 
-    );
 
 
-    return $allowed_blocks;
-}
+//     );
+
+
+//     return $allowed_blocks;
+// }
 
 
 
@@ -150,9 +151,12 @@ function acf_load_blocks()
 {
     $blocks = get_blocks();
     foreach ($blocks as $block) {
-        if (file_exists(get_template_directory() . '/blocks/' . $block . '/block.json')) {
-            register_block_type(get_template_directory() . '/blocks/' . $block . '/block.json');
+        $block_dir = get_template_directory() . '/blocks/' . $block;
+
+        if (file_exists($block_dir . '/block.json')) {
+            register_block_type($block_dir . '/block.json');
         }
+
     }
 }
 add_action('init', 'acf_load_blocks', 5);

@@ -1,4 +1,5 @@
 {
+  "apiVersion": 2,
   "name": "acf/featured-books-block",
   "title": "Featured Books Block",
   "description": "A custom block for displaying featured books.",
