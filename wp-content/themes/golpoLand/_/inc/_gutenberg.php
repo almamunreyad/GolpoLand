@@ -106,7 +106,7 @@ function skylarks_allowed_block_types_all($allowed_blocks, $post)
 
 
         // --- Custom/ACF
-        'acf/accordion-block',
+        'acf/featured-books-block',
 
 
 

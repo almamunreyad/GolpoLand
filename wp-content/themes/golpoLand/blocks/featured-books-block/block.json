@@ -1,0 +1,23 @@
+{
+  "name": "acf/featured-books-block",
+  "title": "Featured Books Block",
+  "description": "A custom block for displaying featured books.",
+  "category": "websure-blocks",
+  "icon": "book",
+  "keywords": ["featured", "books", "display"],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "featured-books-block.php"
+  },
+  "supports": {
+    "align": false,
+    "anchor": true,
+    "mode": true
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "is_preview": true
+    }
+  }
+}
