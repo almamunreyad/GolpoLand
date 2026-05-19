@@ -1,0 +1,384 @@
+/* ============================
+   Gutenberg Block Styles
+   ============================ */
+
+@layer components {
+  /* Group Block */
+  .wp-block-group {
+    @apply p-0;
+  }
+
+  /* Columns Block */
+  .wp-block-columns {
+    @apply gap-8;
+  }
+
+  .wp-block-column {
+    @apply flex-1;
+  }
+
+  /* Image Block */
+  .wp-block-image {
+    @apply m-0;
+  }
+
+  .wp-block-image img {
+    @apply w-full h-auto;
+  }
+
+  /* Button Block */
+  /* .wp-block-buttons .wp-block-button .wp-block-button__link {
+    @apply inline-block px-6 py-3 bg-primary text-white no-underline hover:bg-secondary transition-colors;
+  } */
+
+  /* Quote Block */
+  .wp-block-quote {
+    /* @apply border-l-4 border-Core-red pl-6 italic; */
+  }
+
+  .wp-block-quote cite {
+    @apply text-base font-semibold;
+  }
+
+  /* List Block */
+  .wp-block-list {
+    @apply pl-6;
+  }
+
+  /* Spacer Block */
+  .wp-block-spacer {
+    @apply h-16;
+  }
+
+  /* Custom block styles can be added here as needed */
+  .news-grid a:first-child .img-wrapper {
+    @apply w-full aspect-[358/251] lg:aspect-[827/565];
+  }
+
+  .news-grid a:first-child {
+    @apply lg:col-span-3 max-lg:space-y-6;
+  }
+
+  .news-grid a:first-child {
+    @apply flex flex-col lg:flex-row lg:gap-[62px];
+  }
+
+  .news-grid a:first-child h3 {
+    @apply lg:max-w-[515px] text-base lg:text-2xl text-Pearl leading-[150%] capitalize mt-4 lg:mt-8;
+  }
+
+  .news-grid a:not(:first-child) .img-wrapper {
+    @apply w-full aspect-[358/251] lg:aspect-[383/262];
+  }
+
+  .news-grid a:not(:first-child) {
+    @apply space-y-6;
+  }
+
+  .news-grid a:not(:first-child) h3 {
+    @apply text-base lg:text-lg text-Pearl leading-[166.667%] capitalize mt-4 lg:!mt-5;
+  }
+
+  .featured-news a .img-wrapper {
+    @apply w-full aspect-[358/251] lg:aspect-[383/262];
+  }
+
+  .featured-news a {
+    @apply space-y-6;
+  }
+
+  .featured-news a h3 {
+    @apply text-base lg:text-lg text-Pearl leading-[166.667%] capitalize mt-4 lg:!mt-5;
+  }
+}
+
+.accordion {
+  @apply space-y-4;
+
+  .accordion-item {
+    @apply bg-Eclipse px-5 md:px-7.5;
+  }
+
+  .accordion-toggle {
+    @apply relative w-full py-7 md:py-8 text-left text-base md:text-[22px] leading-[1.25] md:leading-[1.27] text-Alloy transition-colors duration-300 hover:text-Pearl flex items-center justify-between cursor-pointer;
+
+    span {
+      @apply max-md:max-w-41;
+    }
+  }
+
+  .accordion-content {
+    @apply overflow-hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out;
+
+    > div {
+      @apply pb-5 md:pb-10;
+    }
+
+    p {
+      @apply text-sm md:text-base;
+    }
+
+    &.accordion-product {
+      > div {
+        @apply items-start max-md:flex-col gap-5.5 md:gap-22.5;
+      }
+
+      .product-item {
+        p {
+          @apply text-Alloy max-md:text-sm;
+        }
+
+        ul {
+          @apply list-none mt-3 md:mt-5;
+        }
+      }
+    }
+  }
+
+  .accordion-item .accordion-toggle .plus {
+    @apply block;
+  }
+
+  .accordion-item .accordion-toggle .minus {
+    @apply hidden;
+  }
+
+  .accordion-item.active .accordion-toggle .plus {
+    @apply hidden;
+  }
+
+  .accordion-item.active .accordion-toggle .minus {
+    @apply block;
+  }
+}
+
+.work-wrapper .BordercornerShape {
+  @apply border-0;
+}
+.work-wrapper .BordercornerShape > div {
+  @apply relative after:absolute after:h-px after:bg-Basalt after:-bottom-px;
+
+  &::after {
+    width: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: divAfterExpand 0.6s ease-out 1.4s forwards;
+  }
+}
+
+/* Staggered animation delays for each div */
+.work-wrapper .BordercornerShape:nth-child(1) > div::after {
+  animation-delay: 0.5s;
+}
+
+.work-wrapper .BordercornerShape:nth-child(2) > div::after {
+  animation-delay: 1s;
+}
+
+.work-wrapper .BordercornerShape:nth-child(3) > div::after {
+  animation-delay: 1.5s;
+}
+
+.work-wrapper .BordercornerShape:nth-child(4) > div::after {
+  animation-delay: 2s;
+}
+
+.work-wrapper .BordercornerShape:nth-child(5) > div::after {
+  animation-delay: 2.5s;
+}
+
+.work-wrapper .BordercornerShape:nth-child(6) > div::after {
+  animation-delay: 3s;
+}
+
+.work-wrapper {
+  .BordercornerShape:before {
+    @apply hidden;
+  }
+
+  .BordercornerShape {
+    &:last-child {
+      @apply md:border-b-0;
+
+      &:after {
+        @apply md:hidden;
+      }
+      div {
+        @apply md:after:h-0;
+      }
+    }
+  }
+}
+
+.resourcesWrap {
+  .BordercornerShape {
+    &:not(:nth-child(3n + 1)) {
+      @apply md:border-l-0;
+    }
+
+    &:not(:nth-child(-n + 3)) {
+      @apply md:border-t-0;
+    }
+
+    + .BordercornerShape {
+      @apply max-md:border-t-0;
+    }
+  }
+}
+
+.tabWrapper {
+  .BordercornerShape {
+    &:not(:nth-child(2n + 1)) {
+      @apply max-md:border-l-0;
+    }
+
+    &:nth-child(3) {
+      @apply max-md:border-t-0;
+    }
+
+    &:not(:nth-child(3n + 1)) {
+      @apply md:border-l-0;
+    }
+
+    &:not(:nth-child(-n + 3)) {
+      @apply border-t-0;
+    }
+  }
+}
+
+/* Exclude ul from holder padding */
+.holder.holder-alt ul {
+  @apply -mr-5 lg:-mr-30;
+}
+
+/* Tab System Styling */
+.tab-wrapper ul {
+  scrollbar-width: none;
+}
+
+.tab-wrapper ul li {
+  transition: all 0.3s ease;
+}
+
+.tab-wrapper ul li.active {
+  @apply text-Pearl bg-Alloy;
+}
+
+.tab-wrapper ul li:not(.active) {
+  @apply bg-Basalt text-Alloy;
+}
+
+.tab-wrapper ul li:hover:not(.active) {
+  @apply text-Pearl bg-Alloy;
+}
+
+.tabWrapper.active {
+  @apply grid;
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}
+
+.tabWrapper:not(.active) {
+  @apply hidden;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes divAfterExpand {
+  0% {
+    width: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+body .timelinewraper {
+  .timelineSlider {
+    @apply hidden md:flex items-start  gap-16 relative;
+    .swiper-wrapper {
+      .swiper-slide {
+        @apply flex items-start gap-14;
+      }
+    }
+    .timeline-pagination {
+      @apply space-y-10.75! ml-7.5 mt-23.5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='40' viewBox='0 0 11 40' fill='none'%3E%3Cline y1='0.5' x2='11' y2='0.5' stroke='%23393840'/%3E%3Cline y1='8.5' x2='11' y2='8.5' stroke='%23393840'/%3E%3Cline y1='16.5' x2='11' y2='16.5' stroke='%23393840'/%3E%3Cline y1='23.5' x2='11' y2='23.5' stroke='%23393840'/%3E%3Cline y1='31.5' x2='11' y2='31.5' stroke='%23393840'/%3E%3Cline y1='39.5' x2='11' y2='39.5' stroke='%23393840'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-position: center;
+      .swiper-pagination-bullet {
+        @apply bg-Eclipse w-full py-2 text-Alloy h-auto mx-0 inline-block border-0! rounded-none z-10 opacity-100 transition-colors duration-300 ease-in-out text-sm leading-[1.48] tracking-[1.4px] font-monospace font-normal;
+        &.swiper-pagination-bullet-active {
+          @apply text-Pearl;
+        }
+      }
+    }
+  }
+}
+
+/* team member block style for mobile phone */
+.leaderShip.active {
+  .leaderShip-img {
+    @apply rotate-y-180;
+  }
+  .leaderShip-bio-block {
+    @apply rotate-y-0;
+  }
+}

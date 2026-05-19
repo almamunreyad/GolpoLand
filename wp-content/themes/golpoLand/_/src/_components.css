@@ -1,0 +1,261 @@
+/* ============================
+   Component Styles
+   ============================ */
+
+@layer components {
+  .holder {
+    @apply max-w-[2200px] mx-auto w-full px-5 md:px-8 lg:px-10;
+
+    &.holder-alt {
+      @apply md:px-30;
+    }
+  }
+
+  .btn {
+    @apply text-base min-w-48.25 text-center md:min-w-34.75 inline-block leading-none px-6 pt-4.25 pb-3.25 md:pb-3.75 overflow-hidden relative after:absolute after:aspect-square after:w-[120%] after:left-1/2 after:-translate-x-1/2 after:top-1/2 after:-translate-y-1/2 after:bg-[linear-gradient(270deg,#393840_0%,#e0e0e0_40%,#393840_100%)] after:-z-10 after:transition-all after:duration-1800 hover:after:rotate-360 before:absolute before:h-[calc(100%-2px)] before:w-[calc(100%-2px)] before:bg-Basalt before:left-px before:top-px before:-z-1;
+  }
+
+  /* ──────────────────────────────
+     SHINY BUTTON : START
+   ────────────────────────────── */
+  /* .feh-shiny-button {
+    position: relative;
+    padding: 20px 32px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    background: #1f1f1f;
+    transition: all 0.3s ease;
+  }
+
+  .feh-border-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1px;
+    mask: linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0) border-box;
+    mask-composite: exclude;
+  }
+
+  .feh-border-glow {
+    background: linear-gradient(270deg, #393840 0%, #e0e0e0 50%, #393840 100%) 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    transform: translate(-50%, -50%);
+    transform-origin: 0 0;
+    animation: buttonShine 3s infinite;
+  } */
+  /* SHINY BUTTON : END
+   ========================================================================== */
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  /* Custom scrollbar - 2px thin */
+  .filter-scroll::-webkit-scrollbar {
+    height: 8px !important;
+    width: 1px;
+  }
+
+  .filter-scroll::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  .filter-scroll::-webkit-scrollbar-thumb {
+    background: #393840;
+    border-radius: 0 !important;
+  }
+
+  .filter-scroll::-webkit-scrollbar-thumb:hover {
+    background: #ef4444;
+  }
+
+  .filter-scroll::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* Firefox */
+  .filter-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #393840 transparent;
+  }
+  .textContent ol + h2,
+  .textContent ol + h3,
+  .textContent ol + h4,
+  .textContent ul + h2,
+  .textContent ul + h3,
+  .textContent ul + h4,
+  .textContent p + h2,
+  .textContent p + h3,
+  .textContent p + h4 {
+    @apply mt-10;
+  }
+
+  .textContent h2 + p,
+  .textContent h3 + p,
+  .textContent h4 + p,
+  .textContent h2 + ul,
+  .textContent h3 + ul,
+  .textContent h4 + ul,
+  .textContent h2 + ol,
+  .textContent h3 + ol,
+  .textContent h4 + ol,
+  .textContent ul + p,
+  .textContent ol + p,
+  .textContent p + ul,
+  .textContent p + ol,
+  .textContent p + p {
+    @apply mt-4;
+  }
+
+  .textGradient {
+    display: inline-block;
+    background: linear-gradient(270deg, #393840 0%, #e0e0e0 50%, #393840 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    color: transparent;
+    animation: textShine 4s linear infinite;
+  }
+
+  .bordered-title {
+    @apply inline-block border-r-[6px] border-l-[6px] border-Alloy px-3 md:px-5;
+  }
+
+  /* Custom Cursor Styles */
+  .custom-cursor {
+    @apply fixed top-0 left-0 w-[120px] h-[120px] pointer-events-none z-[99] opacity-0 -translate-x-1/2 -translate-y-1/2;
+    transition: opacity 0.3s ease;
+    will-change: transform, opacity;
+  }
+
+  .custom-cursor.active {
+    @apply opacity-100;
+  }
+
+  .custom-cursor.clickedSlide {
+    .clickerCircle {
+      @apply opacity-0;
+    }
+    .arrowInd {
+      @apply opacity-100!;
+    }
+  }
+  .splide .splide__slide * {
+    cursor: none;
+  }
+
+  .custom-cursor svg {
+    @apply h-full w-full;
+    transition: transform 0.2s ease-out;
+    will-change: transform;
+  }
+
+  /* Smooth cursor movement */
+  .custom-cursor.dragging {
+    @apply transition-none;
+  }
+
+  /* Hide default cursor on swiper */
+  /* .swiper-container:hover,
+  .swiper:hover {
+    @apply cursor-none;
+  } */
+
+  /* Outer circle rotation animation */
+  .custom-cursor.active .outer-circle {
+    animation: rotateOuterCircle 6s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes rotateOuterCircle {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.BordercornerShape {
+  @apply relative border border-Basalt;
+
+  &::before,
+  &::after {
+    content: "";
+    @apply absolute left-[-4px] w-[calc(100%+8px)] h-[7px] z-10;
+    background:
+      url("../images/CornerShape.svg") 0 0 / 7px 7px no-repeat,
+      url("../images/CornerShape.svg") 100% 0 / 7px 7px no-repeat;
+  }
+
+  &::before {
+    top: -4px;
+  }
+  &::after {
+    bottom: -4px;
+  }
+}
+
+.newsContent {
+  h3 {
+    @apply text-[26px] md:text-32 leading-[1.46] md:leading-[1.37] text-Alloy mb-8 md:mb-10;
+  }
+  h4 {
+    @apply text-xl md:text-2xl leading-[1.2] my-8;
+  }
+  p {
+    + p {
+      @apply mt-8;
+    }
+  }
+}
+
+.singleBanner,
+.normalBanner {
+  + section {
+    @apply pt-30 md:pt-48;
+  }
+}
+.leaderShip-bio-block {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #1c1b24;
+}
+
+.leaderShip-bio-block::-webkit-scrollbar {
+  width: 4px;
+}
+
+.leaderShip-bio-block::-webkit-scrollbar-track {
+  background: #1c1b24;
+}
+
+.leaderShip-bio-block::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .single-product.in-view img,
+  .in-view > .img-wrapper > img,
+  .work-item .in-view > img,
+  .splide__slide.is-active img {
+    @apply grayscale-0!;
+  }
+}

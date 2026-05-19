@@ -1,0 +1,23 @@
+{
+  "name": "acf/accordion-block",
+  "title": "Accordion Block",
+  "description": "A custom block for displaying accordion items.",
+  "category": "websure-blocks",
+  "icon": "editor-table",
+  "keywords": ["accordion", "faq", "questions"],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "accordion-block.php"
+  },
+  "supports": {
+    "align": false,
+    "anchor": true,
+    "mode": true
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "is_preview": true
+    }
+  }
+}

@@ -1,0 +1,35 @@
+/* @import url("https://use.typekit.net/lvf8nog.css"); */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@import "tailwindcss";
+@import "./_base.css";
+@import "./_components.css";
+@import "./_blocks.css";
+@import "./_navigation.css";
+
+@source "../../../../../markup";
+@source "../../";
+
+@theme {
+  /* --font-roboto: "Roboto", sans-serif;
+  --font-alliance: "Alliance No.2", sans-serif;
+  --font-monospace: "Space Mono", monospace;
+
+  --text-13: 13px; */
+
+  /* --tracking-02: 0.2px; */
+
+  /* --color-Pearl: #e0e0e0;
+
+  --Chrome-Gradient: linear-gradient(270deg, #393840 0%, #e0e0e0 50%, #393840 100%);
+
+  --breakpoint-sm: 575.98px; */
+}
+
+body {
+  /* @apply flex flex-col min-h-screen font-normal font-alliance text-base md:text-lg text-Pearl bg-Kraken overflow-x-hidden; */
+}
+
+/* .floating-header {
+  @apply bg-Kraken;
+} */
