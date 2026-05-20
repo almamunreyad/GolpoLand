@@ -42,9 +42,9 @@ function change_post_menu_label()
 {
   global $menu;
   global $submenu;
-  $menu[5][0] = 'News';
-  $submenu['edit.php'][5][0] = 'News';
-  $submenu['edit.php'][10][0] = 'Add News';
+  $menu[5][0] = 'Books';
+  $submenu['edit.php'][5][0] = 'Books';
+  $submenu['edit.php'][10][0] = 'Add Books';
   $submenu['edit.php'][15][0] = 'Categories'; // Change name for categories
   //$submenu['edit.php'][16][0] = 'Labels'; // Change name for tags
   echo '';
@@ -56,21 +56,29 @@ function change_post_object_label()
 {
   global $wp_post_types;
   $labels = &$wp_post_types['post']->labels;
-  $labels->name = 'News';
-  $labels->singular_name = 'News';
-  $labels->add_new = 'Add News';
-  $labels->add_new_item = 'Add New News';
-  $labels->edit_item = 'Edit News';
-  $labels->new_item = 'News';
-  $labels->view_item = 'View News ';
-  $labels->search_items = 'Search News';
+  $labels->name = 'Books';
+  $labels->singular_name = 'Books';
+  $labels->add_new = 'Add Books';
+  $labels->add_new_item = 'Add New Books';
+  $labels->edit_item = 'Edit Books';
+  $labels->new_item = 'Books';
+  $labels->view_item = 'View Books';
+  $labels->search_items = 'Search Books';
   $labels->not_found = 'Nothing found';
   $labels->not_found_in_trash = 'Nothing found in Trash';
 }
 add_action('init', 'change_post_object_label');
 add_action('admin_menu', 'change_post_menu_label');
 
-
+// menu icon change for posts
+function change_post_icon($args, $post_type)
+{
+  if ($post_type === 'post') {
+    $args['menu_icon'] = 'dashicons-book'; // change icon here
+  }
+  return $args;
+}
+add_filter('register_post_type_args', 'change_post_icon', 10, 2);
 
 // ================================================
 /**

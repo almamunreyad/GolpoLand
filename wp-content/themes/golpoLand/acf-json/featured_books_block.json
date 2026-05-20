@@ -1,0 +1,116 @@
+[
+  {
+    "key": "group_featured_books_block",
+    "title": "Featured Books Block",
+    "fields": [
+      {
+        "key": "field_fbb_source",
+        "label": "Books Source",
+        "name": "book_source",
+        "type": "radio",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "manual": "Manual",
+          "from_category": "From Category"
+        },
+        "default_value": "manual",
+        "return_format": "value",
+        "allow_null": 0,
+        "other_choice": 0,
+        "save_other_choice": 0,
+        "layout": "horizontal"
+      },
+      {
+        "key": "field_fbb_manual_books",
+        "label": "Select Books",
+        "name": "manual_books",
+        "type": "relationship",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_fbb_source",
+              "operator": "==",
+              "value": "manual"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "post_type": [
+          "post"
+        ],
+        "post_status": "",
+        "taxonomy": "",
+        "filters": [
+          "search"
+        ],
+        "return_format": "object",
+        "min": "",
+        "max": "",
+        "elements": [
+          "featured_image"
+        ]
+      },
+      {
+        "key": "field_fbb_categories",
+        "label": "Select Categories",
+        "name": "book_categories",
+        "type": "taxonomy",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_fbb_source",
+              "operator": "==",
+              "value": "from_category"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "taxonomy": "category",
+        "add_term": 0,
+        "save_terms": 0,
+        "load_terms": 0,
+        "return_format": "id",
+        "field_type": "checkbox",
+        "allow_null": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "block",
+          "operator": "==",
+          "value": "acf/featured-books-block"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1747663200
+  }
+]

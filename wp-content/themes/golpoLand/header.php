@@ -47,19 +47,19 @@ if (!$intro) {
         <div class="holder">
             <div class="header-top">
 
-                <!-- Logo -->
-                <a href="/" class="shrink-0 flex items-center" aria-label="Go to homepage">
-                    <!-- Desktop logo -->
-                    <img
-                        src="/wp-content/themes/golpoLand/_/images/Logo_en.svg"
-                        alt="Site Logo"
-                        class="hidden md:block h-11.5 w-auto" />
-                    <!-- Mobile logo -->
+                <a href="/" class="shrink-0 flex items-center group" aria-label="Go to homepage">
 
-                    <img
-                        src="/wp-content/themes/golpoLand/_/images/Logo-icon.png"
-                        alt="Site Logo"
-                        class="block md:hidden h-9 w-auto" />
+                    <span class="font-display text-xl md:text-2xl font-bold tracking-tight relative">
+
+                        <span class="relative z-10">
+                            Golpo <span class="text-green-400">Land</span>
+                        </span>
+
+                        <!-- glow layer -->
+                        <span class="absolute inset-0 blur-xl opacity-0 group-hover:opacity-70 transition duration-500">
+                            Golpo <span class="text-green-400">Land</span>
+                        </span>
+                    </span>
 
                 </a>
 
@@ -142,15 +142,15 @@ if (!$intro) {
         </div>
 
         <!-- Desktop nav -->
-        <nav class="site-nav" aria-label="Main navigation">
+        <nav class="site-nav border-t border-border hidden md:block" aria-label="Main navigation">
             <div class="holder">
-                <div class="nav-inner">
-                    <ul class="nav-links" role="list">
-                        <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                        <li><a href="/books" class="nav-link">Books</a></li>
-                        <li><a href="/series" class="nav-link">Series</a></li>
-                        <li><a href="/contributors" class="nav-link">Contributors</a></li>
-                        <li><a href="/about" class="nav-link">About Us</a></li>
+                <div class="nav-inner py-2 flex items-center justify-between">
+                    <ul class="nav-links flex items-center gap-5 list-none" role="list">
+                        <li><a href="/" class=" active" aria-current="page">Home</a></li>
+                        <li><a href="/books">Books</a></li>
+                        <li><a href="/series">Series</a></li>
+                        <li><a href="/contributors">Contributors</a></li>
+                        <li><a href="/about">About Us</a></li>
                     </ul>
                     <a href="/donate" class="btn btn-accent btn-sm" aria-label="Donate to support Booktime">
                         <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -191,7 +191,72 @@ if (!$intro) {
 ══════════════════════════════════════════ -->
 
 
-    <main>
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-blob-1" aria-hidden="true"></div>
+        <div class="hero-blob-2" aria-hidden="true"></div>
+
+        <div class="holder">
+            <div class="hero-grid">
+
+                <!-- Left: Copy -->
+                <div class="hero-copy">
+                    <div class="fade-up fade-up-1 eyebrow" aria-label="For young readers">
+                        <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                        </svg>
+                        For Young Readers
+                    </div>
+
+                    <h1 id="hero-heading" class="hero-title fade-up fade-up-2">
+                        Book<span>time</span>
+                    </h1>
+
+                    <p class="hero-desc fade-up fade-up-3">
+                        Your child's gateway to knowledge and imagination. Explore hundreds of stories in 10 languages — free, forever.
+                    </p>
+
+                    <div class="hero-ctas fade-up fade-up-4">
+                        <a href="/signup" class="btn btn-primary btn-lg">
+                            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            Sign Up Free
+                        </a>
+                        <a href="/books" class="btn btn-outline btn-lg">
+                            Browse Books
+                            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <p class="hero-social-proof fade-up fade-up-4">
+                        Free forever · No credit card required · 10 languages
+                    </p>
+                </div>
+
+                <!-- Right: Visual -->
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-ring"></div>
+                    <div class="hero-badge">
+                        <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        500+ Books
+                    </div>
+                    <div class="hero-img-wrap">
+                        <div class="hero-img-placeholder" role="img" aria-label="Children exploring colourful books">
+                            📚
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <main class="flex-1">
 
         <!-- Start of banner block -->
         <?php //require(get_template_directory() . '/layout-modules/page-banner-partial.php');

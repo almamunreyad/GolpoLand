@@ -1,52 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@300..900&family=DM+Sans:wght@100..900&family=Noto+Sans:wght@100..900&display=swap");
 
 @import "tailwindcss";
 @import "./_navigation.css";
+@import "./_blocks.css";
 
 @source "../../../../../markup";
 @source "../../";
 
-/* ── Design tokens ──────────────────────────────────────── */
 /* ── Tailwind v4 theme ──────────────────────────────────── */
 @theme inline {
-  /* Typography */
   --font-noto: var(--font-noto);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 
-  /* Brand colours */
   --color-brand: var(--brand);
   --color-brand-dark: var(--brand-dark);
   --color-brand-light: var(--brand-light);
   --color-brand-xlight: var(--brand-xlight);
 
-  /* Accent colours */
   --color-accent: var(--accent);
   --color-accent-dark: var(--accent-dark);
   --color-accent-light: var(--accent-light);
 
-  /* UI colours */
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-surface: var(--surface);
   --color-bg: var(--bg);
 
-  /* Radius */
   --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius);
+  --radius: var(--radius);
   --radius-xl: var(--radius-xl);
 
-  /* Shadows */
-  --shadow-sm: var(--shadow);
+  --shadow: var(--shadow);
   --shadow-lg: var(--shadow-lg);
 
-  /* Layout */
   --header-h: var(--header-h);
   --nav-h: var(--nav-h);
 }
 
+/* ── Root variables ─────────────────────────────────────── */
 :root {
   --brand: #16a34a;
   --brand-dark: #15803d;
@@ -72,38 +65,67 @@
 
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
+  --font-noto: "Noto Sans", system-ui, sans-serif;
 
   --header-h: 95px;
   --nav-h: 50px;
 }
 
-/* ── Global base ────────────────────────────────────────── */
+/* ── Base styles ───────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv03";
+  text-rendering: optimizeLegibility;
 }
 
 body {
+  @apply min-h-screen flex flex-col antialiased;
   font-family: var(--font-body);
   background: var(--bg);
   color: var(--ink);
-  -webkit-font-smoothing: antialiased;
 }
 
+/* ── Reset basics ──────────────────────────────────────── */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-.holder {
-  @apply max-w-270 w-full mx-auto px-3.75 min-[641px]:px-5 min-[1192px]:px-7.5;
-
+* {
+  box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── Container ─────────────────────────────────────────── */
+.holder {
+  max-width: 1080px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 14px;
+}
+
+@media (min-width: 641px) {
+  .holder {
+    padding-inline: 20px;
+  }
+}
+
+@media (min-width: 1192px) {
+  .holder {
+    padding-inline: 30px;
+  }
+}
+
+/* ── Selection ─────────────────────────────────────────── */
 ::selection {
   background-color: #d0e6ff;
 }
 
-/* Custom scrollbar */
+/* ── Scrollbar ─────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -117,7 +139,7 @@ a {
   border-radius: 4px;
 }
 
-/* Fade-up animation for content sections */
+/* ── Animation ─────────────────────────────────────────── */
 @keyframes fadeUp {
   from {
     opacity: 0;

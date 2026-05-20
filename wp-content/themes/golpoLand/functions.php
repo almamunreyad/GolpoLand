@@ -2,6 +2,7 @@
 
 // Gutenberg ACF custom blocks
 require(get_template_directory() . '/_/inc/_gutenberg.php');
+require(get_template_directory() . '/_/inc/_custom-acf-code-snippets.php');
 require(get_template_directory() . '/_/inc/_register-navs.php');
 require(get_template_directory() . '/_/inc/_custom-wpadmin.php');
 // require(get_template_directory() . '/_/inc/_breadcrumb.php');
