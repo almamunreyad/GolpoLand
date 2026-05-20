@@ -20,9 +20,6 @@ $show_cta    = !empty(get_field('show_slider'));
 $background  = get_field('background') ?: 'white';
 $source      = get_field('book_source') ?: 'manual';
 
-$class_name .= ' bg-' . $background;
-
-// Normalize data into groups regardless of source
 $groups = [];
 
 if ($source === 'manual') {
@@ -37,7 +34,7 @@ if ($source === 'manual') {
     if (!$category || is_wp_error($category)) continue;
     $books = get_posts([
       'post_type'      => 'post',
-      'posts_per_page' => -1,
+      'posts_per_page' => 12,
       'orderby'        => 'date',
       'order'          => 'DESC',
       'fields'         => 'ids',
@@ -52,13 +49,9 @@ if ($source === 'manual') {
     }
   }
 }
-
-// Class names differ by mode — markup stays the same
-$container_class = $show_cta ? 'swiper categories-books-swiper' : 'books-grid';
-$item_class      = $show_cta ? 'swiper-slide book-item' : 'book-item';
 ?>
 
-<section class="books-section <?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?> aria-label="Books showcase">
+<section class="books-section <?php echo $background == 'white' ? '' : ' bg-[#f2f2f2]' ?> <?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?> aria-label="Books showcase">
   <div class="holder">
     <div class="section-header">
       <?php if ($block_title) : ?>
@@ -71,57 +64,30 @@ $item_class      = $show_cta ? 'swiper-slide book-item' : 'book-item';
           : '#'; ?>
         <a href="<?php echo esc_url($cat_link); ?>" class="btn btn-ghost btn-sm">
           View all
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
+          <?php get_template_part('svgs/right-arrow'); ?>
         </a>
       <?php endif; ?>
     </div>
 
-    <div class="swiper book-category-swiper">
+    <div class="swiper book-category-swiper overflow-hidden!">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <a href="/en/books/1" class="book-card" aria-label="Book 1">
-            <img src="https://covers.openlibrary.org/b/id/8739161-L.jpg" alt="Book cover 1" loading="lazy" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="/en/books/2" class="book-card" aria-label="Book 2">
-            <img src="https://covers.openlibrary.org/b/id/8228691-L.jpg" alt="Book cover 2" loading="lazy" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="/en/books/3" class="book-card" aria-label="Book 3">
-            <img src="https://covers.openlibrary.org/b/id/10909258-L.jpg" alt="Book cover 3" loading="lazy" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="/en/books/4" class="book-card" aria-label="Book 4">
-            <img src="https://covers.openlibrary.org/b/id/12006469-L.jpg" alt="Book cover 4" loading="lazy" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="/en/books/5" class="book-card" aria-label="Book 5">
-            <img src="https://covers.openlibrary.org/b/id/8739175-L.jpg" alt="Book cover 5" loading="lazy" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="/en/books/6" class="book-card" aria-label="Book 6">
-            <img src="https://covers.openlibrary.org/b/id/8091016-L.jpg" alt="Book cover 6" loading="lazy" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="/en/books/7" class="book-card" aria-label="Book 7">
-            <img src="https://covers.openlibrary.org/b/id/10527843-L.jpg" alt="Book cover 7" loading="lazy" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="/en/books/8" class="book-card" aria-label="Book 8">
-            <img src="https://covers.openlibrary.org/b/id/8739155-L.jpg" alt="Book cover 8" loading="lazy" />
-          </a>
-        </div>
+        <?php foreach ($groups as $group) :
+          foreach ($group['posts'] as $post_id) :
+            $featured_img = has_post_thumbnail($post_id)
+              ? get_the_post_thumbnail_url($post_id, 'full')
+              : get_template_directory_uri() . '/_/images/placeholder.png';
+        ?>
+            <div class="swiper-slide">
+              <a href="<?php echo esc_url(get_permalink($post_id)); ?>" class="book-card" aria-label="<?php echo esc_attr(get_the_title($post_id)); ?>">
+                <img src="<?php echo esc_url($featured_img); ?>" alt="<?php echo esc_attr(get_the_title($post_id)); ?>" loading="lazy" />
+              </a>
+            </div>
+        <?php endforeach;
+        endforeach; ?>
       </div>
+
       <div class="swiper-pagination"></div>
     </div>
+
   </div>
 </section>
