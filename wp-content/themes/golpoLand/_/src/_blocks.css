@@ -1,70 +1,43 @@
-/* ── BOOKS SECTION ────────────────────────── */
-.books-section {
-  padding: 20px 0 28px;
-  background: var(--surface);
-}
+    @keyframes floatY {
 
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
+      0%,
+      100% {
+        transform: translateY(0);
+      }
 
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-}
+      50% {
+        transform: translateY(-9px);
+      }
+    }
 
-.book-swiper {
-  overflow: hidden;
-}
+    .animate-float {
+      animation: floatY 4.5s ease-in-out infinite;
+    }
 
-.swiper-slide {
-  height: auto;
-}
+    .animate-float-delay1 {
+      animation: floatY 5s .4s ease-in-out infinite;
+    }
 
-.book-card {
-  display: block;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: box-shadow .25s, transform .25s;
-  background: var(--surface);
-  aspect-ratio: 3/4;
-}
+    .animate-float-delay2 {
+      animation: floatY 6s .9s ease-in-out infinite;
+    }
 
-.book-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--shadow-lg);
-}
+    .text-gradient {
+      background: linear-gradient(135deg, #16a34a, #22c55e, #4ade80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-.book-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+    .book-gradient {
+      background: linear-gradient(145deg, #bbf7d0, #86efac 50%, #4ade80);
+    }
 
-.book-card:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 3px;
-}
+    @media (prefers-reduced-motion: reduce) {
 
-.swiper-pagination-bullet {
-  background: var(--brand) !important;
-  opacity: .3;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1 !important;
-}
-
-.swiper-pagination {
-  margin-top: 12px !important;
-  position: relative !important;
-  bottom: auto !important;
-}
+      .animate-float,
+      .animate-float-delay1,
+      .animate-float-delay2 {
+        animation: none !important;
+      }
+    }

@@ -191,69 +191,183 @@ if (!$intro) {
 ══════════════════════════════════════════ -->
 
 
-    <section class="hero" aria-labelledby="hero-heading">
-        <div class="hero-blob-1" aria-hidden="true"></div>
-        <div class="hero-blob-2" aria-hidden="true"></div>
+    <!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+    <section
+        class="relative py-10 flex overflow-hidden items-center
+         bg-gradient-to-br from-brand-xlight via-emerald-50 to-yellow-50
+         max-sm:h-auto max-sm:py-9 max-sm:px-5"
+        aria-labelledby="hero-heading">
 
-        <div class="holder">
-            <div class="hero-grid">
+        <!-- Blobs -->
+        <div aria-hidden="true"
+            class="absolute -top-16 -right-12 w-64 h-64 rounded-full pointer-events-none
+           bg-[radial-gradient(circle,rgba(134,239,172,.36),rgba(74,222,128,.1))]
+           blur-[50px]">
+        </div>
+        <div aria-hidden="true"
+            class="absolute -bottom-14 -left-8 w-52 h-52 rounded-full pointer-events-none
+           bg-[radial-gradient(circle,rgba(253,230,138,.36),rgba(251,191,36,.1))]
+           blur-[42px]">
+        </div>
 
-                <!-- Left: Copy -->
-                <div class="hero-copy">
-                    <div class="fade-up fade-up-1 eyebrow" aria-label="For young readers">
-                        <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-                        </svg>
-                        For Young Readers
-                    </div>
+        <!-- Inner grid -->
+        <div class="holder relative z-10 grid grid-cols-2 gap-8 items-center w-full
+              max-sm:grid-cols-1 max-sm:gap-7">
 
-                    <h1 id="hero-heading" class="hero-title fade-up fade-up-2">
-                        Book<span>time</span>
-                    </h1>
+            <!-- ── Left: Copy ── -->
+            <div class="flex flex-col gap-4 max-sm:items-center max-sm:text-center">
 
-                    <p class="hero-desc fade-up fade-up-3">
-                        Your child's gateway to knowledge and imagination. Explore hundreds of stories in 10 languages — free, forever.
-                    </p>
-
-                    <div class="hero-ctas fade-up fade-up-4">
-                        <a href="/signup" class="btn btn-primary btn-lg">
-                            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                            Sign Up Free
-                        </a>
-                        <a href="/books" class="btn btn-outline btn-lg">
-                            Browse Books
-                            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <p class="hero-social-proof fade-up fade-up-4">
-                        Free forever · No credit card required · 10 languages
-                    </p>
+                <!-- Eyebrow pill -->
+                <div
+                    class="inline-flex items-center gap-1.5 w-fit px-2.5 py-[3px] rounded-full
+               bg-brand-light border border-brand/20
+               text-brand-dark text-[10.5px] font-bold tracking-[.07em] uppercase"
+                    aria-label="For young readers">
+                    <span
+                        aria-hidden="true"
+                        class="w-[5px] h-[5px] rounded-full bg-brand shrink-0
+                 shadow-[0_0_0_2px_rgba(22,163,74,.22)]">
+                    </span>
+                    For Young Readers
                 </div>
 
-                <!-- Right: Visual -->
-                <div class="hero-visual" aria-hidden="true">
-                    <div class="hero-ring"></div>
-                    <div class="hero-badge">
-                        <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                <!-- Title -->
+                <h1
+                    id="hero-heading"
+                    class="font-display font-extrabold leading-[1.06] tracking-[-0.035em] text-slate-900
+               text-[2.3rem]">
+                    Golpo<span class="text-gradient">Land</span>
+                </h1>
+
+                <!-- Description -->
+                <p class="text-base leading-[1.65] text-slate-500 max-w-[340px] max-sm:mx-auto">
+                    Your child's gateway to knowledge and imagination. Explore hundreds of stories
+                    in 10 languages — free, forever.
+                </p>
+
+                <!-- CTAs -->
+                <div class="flex items-center gap-2 flex-wrap max-sm:justify-center">
+
+                    <a
+                        href="/signup"
+                        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-[10px]
+                 bg-gradient-to-br from-brand to-brand-mid text-white
+                 text-[.8rem] font-bold
+                 shadow-[0_3px_14px_rgba(22,163,74,.3)]
+                 hover:shadow-[0_5px_20px_rgba(22,163,74,.38)]
+                 hover:-translate-y-px transition-all duration-150
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
+                 active:scale-[.97]"
+                        aria-label="Sign up for free">
+                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                        500+ Books
+                        Sign Up Free
+                    </a>
+
+                    <a
+                        href="/books"
+                        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-[10px]
+                 bg-white/70 backdrop-blur-[8px] text-slate-900
+                 text-[.8rem] font-bold
+                 border border-black/10 shadow-[0_2px_6px_rgba(15,23,42,.05)]
+                 hover:border-brand/30 hover:-translate-y-px transition-all duration-150
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
+                 active:scale-[.97]"
+                        aria-label="Browse all books">
+                        Browse Books
+                        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+
+                </div>
+
+                <!-- Trust bar -->
+                <div class="flex items-center flex-wrap max-sm:justify-center" role="list" aria-label="Key features">
+                    <div class="flex items-center gap-1 text-xs text-slate-400 font-medium px-2 first:pl-0
+                    [&:not(:first-child)]:border-l [&:not(:first-child)]:border-slate-200/60"
+                        role="listitem">
+                        <span class="w-1 h-1 rounded-full bg-green-400 shrink-0" aria-hidden="true"></span>
+                        Free forever
                     </div>
-                    <div class="hero-img-wrap">
-                        <div class="hero-img-placeholder" role="img" aria-label="Children exploring colourful books">
-                            📚
-                        </div>
+                    <div class="flex items-center gap-1 text-xs text-slate-400 font-medium px-2
+                    border-l border-slate-200/60"
+                        role="listitem">
+                        <span class="w-1 h-1 rounded-full bg-green-400 shrink-0" aria-hidden="true"></span>
+                        No credit card
+                    </div>
+                    <div class="flex items-center gap-1 text-xs text-slate-400 font-medium px-2
+                    border-l border-slate-200/60"
+                        role="listitem">
+                        <span class="w-1 h-1 rounded-full bg-green-400 shrink-0" aria-hidden="true"></span>
+                        10 languages
                     </div>
                 </div>
 
             </div>
+
+            <!-- ── Right: Visual ── -->
+            <div class="flex items-center justify-center relative h-[250px]" aria-hidden="true">
+
+                <!-- Glow orb -->
+                <div class="absolute  rounded-full
+                  bg-[radial-gradient(circle,rgba(134,239,172,.45),transparent_68%)]
+                  blur-[22px]">
+                </div>
+
+                <!-- Book + floating chips -->
+                <div class="relative w-full h-full z-10 animate-float">
+
+                    <!-- Book box -->
+                    <div
+                        class="book-gradient w-full h-full rounded-[18px]
+                 flex items-center justify-center text-[120px]
+                 border border-white/50
+                 shadow-[0_16px_40px_rgba(22,163,74,.2),0_4px_10px_rgba(22,163,74,.12),inset_0_1px_0_rgba(255,255,255,.4)]"
+                        role="img"
+                        aria-label="Stack of colourful books">
+                        📚
+                    </div>
+
+                    <!-- Chip: top-right -->
+                    <div
+                        class="animate-float-delay1
+                 absolute -top-3 -right-4
+                 flex items-center gap-1.5 px-2.5 py-1.5 rounded-[10px]
+                 bg-white/90 backdrop-blur-[10px]
+                 border border-white/80
+                 shadow-[0_4px_16px_rgba(15,23,42,.08)]">
+                        <span class="text-sm">🏅</span>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-900 leading-tight">500+ Books</div>
+                            <div class="text-[9.5px] text-slate-400 font-medium">Free forever</div>
+                        </div>
+                    </div>
+
+                    <!-- Chip: bottom-left -->
+                    <div
+                        class="animate-float-delay2
+                 absolute -bottom-2 -left-5
+                 flex items-center gap-1.5 px-2.5 py-1.5 rounded-[10px]
+                 bg-white/90 backdrop-blur-[10px]
+                 border border-white/80
+                 shadow-[0_4px_16px_rgba(15,23,42,.08)]">
+                        <span class="text-sm">🌐</span>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-900 leading-tight">10 Languages</div>
+                            <div class="text-[9.5px] text-slate-400 font-medium">50K+ readers</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </section>
+
 
 
     <main class="flex-1">
