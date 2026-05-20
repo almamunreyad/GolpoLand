@@ -434,14 +434,14 @@ $(function () {
       $(this).attr("href"),
       "shareWindow",
       "width=" +
-        w +
-        ",height=" +
-        h +
-        ",top=" +
-        (screen.height / 2 - h / 2) +
-        ",left=" +
-        (screen.width / 2 - w / 2) +
-        ",toolbar=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1",
+      w +
+      ",height=" +
+      h +
+      ",top=" +
+      (screen.height / 2 - h / 2) +
+      ",left=" +
+      (screen.width / 2 - w / 2) +
+      ",toolbar=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1",
     );
   });
 

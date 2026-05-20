@@ -8,46 +8,94 @@
 @source "../../";
 
 /* ── Design tokens ──────────────────────────────────────── */
-:root {
-  /* Font families */
-  --font-noto: "Noto Sans", sans-serif;
-
-
-  --orange: #ff8a00;
-  --orange-dark: #fbba02;
-  --orange-light: #fbba02;
-  --grey-dark: #b9bac7;
-  --grey-light: #e4e5ed;
-  --on-start: #ffab4c;
-  --on-end: #cbcde5;
-  --on-text: #333;
-  --pill-radius: 9999px;
-}
-
 /* ── Tailwind v4 theme ──────────────────────────────────── */
 @theme inline {
   /* Typography */
   --font-noto: var(--font-noto);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 
-  /* Semantic surface colours */
-  --color-orange: var(--orange);
-  --color-orange-dark: var(--orange-dark);
-  --color-orange-light: var(--orange-light);
-  --color-grey-dark: var(--grey-dark);
-  --color-grey-light: var(--grey-light);
-  --color-on-start: var(--on-start);
-  --color-on-end: var(--on-end);
-  --color-text: var(--text);
+  /* Brand colours */
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-light: var(--brand-light);
+  --color-brand-xlight: var(--brand-xlight);
+
+  /* Accent colours */
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
+
+  /* UI colours */
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-bg: var(--bg);
+
+  /* Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius);
+  --radius-xl: var(--radius-xl);
+
+  /* Shadows */
+  --shadow-sm: var(--shadow);
+  --shadow-lg: var(--shadow-lg);
+
+  /* Layout */
+  --header-h: var(--header-h);
+  --nav-h: var(--nav-h);
+}
+
+:root {
+  --brand: #16a34a;
+  --brand-dark: #15803d;
+  --brand-light: #dcfce7;
+  --brand-xlight: #f0fdf4;
+
+  --accent: #f59e0b;
+  --accent-dark: #d97706;
+  --accent-light: #fef3c7;
+
+  --ink: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --surface: #ffffff;
+  --bg: #fafaf9;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xl: 24px;
+
+  --shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.13);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  --header-h: 95px;
+  --nav-h: 50px;
 }
 
 /* ── Global base ────────────────────────────────────────── */
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply text-lg bg-white text-text overflow-x-hidden h-full font-noto font-normal leading-[1.7];
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .holder {
-  @apply max-w-300 w-full mx-auto px-3.75 min-[641px]:px-5 min-[1192px]:px-7.5;
+  @apply max-w-270 w-full mx-auto px-3.75 min-[641px]:px-5 min-[1192px]:px-7.5;
 
 }
 
