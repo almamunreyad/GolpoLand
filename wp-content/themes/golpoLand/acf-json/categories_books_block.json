@@ -19,14 +19,14 @@
       },
       {
         "key": "field_cbb_show_slider",
-        "label": "Show Slider",
+        "label": "Show CTA",
         "name": "show_slider",
         "type": "checkbox",
         "instructions": "",
         "required": 0,
         "conditional_logic": 0,
-        "wrapper": { "width": "30", "class": "", "id": "" },
-        "choices": { "1": "Show Slider" },
+        "wrapper": { "width": "33", "class": "", "id": "" },
+        "choices": { "yes": "Show CTA" },
         "default_value": [],
         "return_format": "value",
         "layout": "vertical",
@@ -40,7 +40,7 @@
         "instructions": "",
         "required": 0,
         "conditional_logic": 0,
-        "wrapper": { "width": "30", "class": "", "id": "" },
+        "wrapper": { "width": "33", "class": "", "id": "" },
         "choices": {
           "white": "White",
           "light_gray": "Light Gray"
@@ -50,17 +50,6 @@
         "layout": "horizontal"
       },
       {
-        "key": "field_cbb_cta_link",
-        "label": "CTA Link",
-        "name": "cta_link",
-        "type": "link",
-        "instructions": "",
-        "required": 0,
-        "conditional_logic": 0,
-        "wrapper": { "width": "40", "class": "", "id": "" },
-        "return_format": "array"
-      },
-      {
         "key": "field_cbb_source",
         "label": "Books Source",
         "name": "book_source",
@@ -68,7 +57,7 @@
         "instructions": "",
         "required": 0,
         "conditional_logic": 0,
-        "wrapper": { "width": "", "class": "", "id": "" },
+        "wrapper": { "width": "33", "class": "", "id": "" },
         "choices": {
           "manual": "Manual",
           "from_category": "From Category"

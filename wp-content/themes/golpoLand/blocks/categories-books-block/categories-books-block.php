@@ -16,9 +16,8 @@ if (!empty($is_preview)) {
 }
 
 $block_title = get_field('block_title');
-$show_slider = !empty(get_field('show_slider'));
+$show_cta    = !empty(get_field('show_slider'));
 $background  = get_field('background') ?: 'white';
-$cta_link    = get_field('cta_link');
 $source      = get_field('book_source') ?: 'manual';
 
 $class_name .= ' bg-' . $background;
@@ -55,23 +54,31 @@ if ($source === 'manual') {
 }
 
 // Class names differ by mode — markup stays the same
-$container_class = $show_slider ? 'swiper categories-books-swiper' : 'books-grid';
-$item_class      = $show_slider ? 'swiper-slide book-item' : 'book-item';
+$container_class = $show_cta ? 'swiper categories-books-swiper' : 'books-grid';
+$item_class      = $show_cta ? 'swiper-slide book-item' : 'book-item';
 ?>
 
 <section class="books-section <?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?> aria-label="Books showcase">
   <div class="holder">
     <div class="section-header">
-      <h2 class="section-title">New Arrivals</h2>
-      <a href="/books" class="btn btn-ghost btn-sm">
-        View all
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
+      <?php if ($block_title) : ?>
+        <h2 class="section-title"><?php echo esc_html($block_title); ?></h2>
+      <?php endif; ?>
+
+      <?php if ($show_cta) :
+        $cat_link = ($source === 'from_category' && !empty($groups))
+          ? get_term_link($groups[0]['cat_id'], 'category')
+          : '#'; ?>
+        <a href="<?php echo esc_url($cat_link); ?>" class="btn btn-ghost btn-sm">
+          View all
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      <?php endif; ?>
     </div>
 
-    <div class="swiper book-swiper">
+    <div class="swiper book-category-swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <a href="/en/books/1" class="book-card" aria-label="Book 1">
@@ -116,66 +123,5 @@ $item_class      = $show_slider ? 'swiper-slide book-item' : 'book-item';
       </div>
       <div class="swiper-pagination"></div>
     </div>
-  </div>
-</section>
-
-
-<section class="<?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?>>
-  <div class="holder">
-
-    <?php if ($block_title) : ?>
-      <h2 class="block-title"><?php echo esc_html($block_title); ?></h2>
-    <?php endif; ?>
-
-    <?php foreach ($groups as $group) : ?>
-
-      <?php if ($group['cat']) : ?>
-        <div class="category-group">
-          <h3 class="category-title"><?php echo esc_html($group['cat']->name); ?></h3>
-        <?php endif; ?>
-
-        <div class="<?php echo esc_attr($container_class); ?>">
-          <?php if ($show_slider) : ?><div class="swiper-wrapper"><?php endif; ?>
-
-            <?php foreach ($group['posts'] as $post_id) :
-              $permalink = get_permalink($post_id);
-              $title     = get_the_title($post_id);
-            ?>
-              <div class="<?php echo esc_attr($item_class); ?>">
-                <?php if (has_post_thumbnail($post_id)) : ?>
-                  <a class="bookCover" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
-                    <?php echo get_the_post_thumbnail($post_id, 'medium'); ?>
-                  </a>
-                <?php endif; ?>
-                <h4 class="book-title">
-                  <a href="<?php echo esc_url($permalink); ?>"><?php echo esc_html($title); ?></a>
-                </h4>
-              </div>
-            <?php endforeach; ?>
-
-            <?php if ($show_slider) : ?>
-            </div>
-            <div class="swiper-pagination"></div><?php endif; ?>
-        </div>
-
-        <?php if ($group['cat']) : ?>
-          <a href="<?php echo esc_url(get_category_link($group['cat_id'])); ?>" class="view-all-link">
-            View All <?php echo esc_html($group['cat']->name); ?>
-          </a>
-        </div>
-      <?php endif; ?>
-
-    <?php endforeach; ?>
-
-    <?php if ($cta_link) : ?>
-      <div class="cta-wrap">
-        <a href="<?php echo esc_url($cta_link['url']); ?>"
-          class="cta-link"
-          <?php if (!empty($cta_link['target'])) echo 'target="' . esc_attr($cta_link['target']) . '"'; ?>>
-          <?php echo esc_html($cta_link['title']); ?>
-        </a>
-      </div>
-    <?php endif; ?>
-
   </div>
 </section>

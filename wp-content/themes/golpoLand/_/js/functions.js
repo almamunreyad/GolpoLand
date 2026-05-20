@@ -37,6 +37,39 @@ $(function () {
 
 
   /* ─────────────────────────────────────────────
+   * Book category Swiper
+   * ───────────────────────────────────────────── */
+  $('.book-category-swiper').each(function () {
+    new Swiper(this, {
+      slidesPerView: 2,
+      spaceBetween: 14,
+      grabCursor: true,
+
+      pagination: {
+        el: $(this).find('.swiper-pagination')[0],
+        clickable: true,
+      },
+
+      breakpoints: {
+        640: {
+          slidesPerView: 3,
+          spaceBetween: 16,
+        },
+        1024: {
+          slidesPerView: 6,
+          spaceBetween: 18,
+        },
+      },
+
+      a11y: {
+        prevSlideMessage: 'Previous book',
+        nextSlideMessage: 'Next book',
+      },
+    });
+  });
+
+
+  /* ─────────────────────────────────────────────
    * Mobile Menu
    * ───────────────────────────────────────────── */
   const $menuBtn = $('#mobile-menu-btn');
@@ -137,61 +170,61 @@ $(function () {
   /* ─────────────────────────────────────────────
    * Featured Books Swiper
    * ───────────────────────────────────────────── */
-  $('.featured-books-swiper').each(function () {
+  // $('.featured-books-swiper').each(function () {
 
-    new Swiper(this, {
-      slidesPerView: 2,
-      spaceBetween: 10,
+  //   new Swiper(this, {
+  //     slidesPerView: 2,
+  //     spaceBetween: 10,
 
-      pagination: {
-        el: $(this).find('.swiper-pagination')[0],
-        clickable: true,
-      },
+  //     pagination: {
+  //       el: $(this).find('.swiper-pagination')[0],
+  //       clickable: true,
+  //     },
 
-      breakpoints: {
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
+  //     breakpoints: {
+  //       768: {
+  //         slidesPerView: 3,
+  //         spaceBetween: 20,
+  //       },
 
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 20,
-        },
-      },
-    });
+  //       1024: {
+  //         slidesPerView: 4,
+  //         spaceBetween: 20,
+  //       },
+  //     },
+  //   });
 
-  });
+  // });
 
 
   /* ─────────────────────────────────────────────
    * Categories Books Swiper
    * ───────────────────────────────────────────── */
-  $('.categories-books-swiper').each(function () {
+  // $('.categories-books-swiper').each(function () {
 
-    new Swiper(this, {
-      slidesPerView: 3,
-      spaceBetween: 10,
+  //   new Swiper(this, {
+  //     slidesPerView: 3,
+  //     spaceBetween: 10,
 
-      pagination: {
-        el: $(this).find('.swiper-pagination')[0],
-        clickable: true,
-      },
+  //     pagination: {
+  //       el: $(this).find('.swiper-pagination')[0],
+  //       clickable: true,
+  //     },
 
-      breakpoints: {
-        768: {
-          slidesPerView: 4,
-          spaceBetween: 20,
-        },
+  //     breakpoints: {
+  //       768: {
+  //         slidesPerView: 4,
+  //         spaceBetween: 20,
+  //       },
 
-        1024: {
-          slidesPerView: 6,
-          spaceBetween: 20,
-        },
-      },
-    });
+  //       1024: {
+  //         slidesPerView: 6,
+  //         spaceBetween: 20,
+  //       },
+  //     },
+  //   });
 
-  });
+  // });
 
 
   /* ─────────────────────────────────────────────
