@@ -23,7 +23,7 @@ $(function () {
           spaceBetween: 16,
         },
         1024: {
-          slidesPerView: 5,
+          slidesPerView: 4,
           spaceBetween: 18,
         },
       },
@@ -197,16 +197,16 @@ $(function () {
   /* ─────────────────────────────────────────────
    * GSAP + Lenis Smooth Scroll
    * ───────────────────────────────────────────── */
-  gsap.registerPlugin(ScrollTrigger);
+  // gsap.registerPlugin(ScrollTrigger);
 
-  var lenis = new Lenis();
+  // var lenis = new Lenis();
 
-  lenis.on('scroll', ScrollTrigger.update);
+  // lenis.on('scroll', ScrollTrigger.update);
 
-  gsap.ticker.add(function (time) {
-    lenis.raf(time * 1000);
-  });
+  // gsap.ticker.add(function (time) {
+  //   lenis.raf(time * 1000);
+  // });
 
-  gsap.ticker.lagSmoothing(0);
+  // gsap.ticker.lagSmoothing(0);
 
 }); // End DOM Ready

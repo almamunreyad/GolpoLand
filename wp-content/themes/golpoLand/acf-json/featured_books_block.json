@@ -17,15 +17,39 @@
           "id": ""
         },
         "choices": {
-          "manual": "Manual",
-          "from_category": "From Category"
+          "automatic": "Automatic",
+          "manual": "Manual"
         },
-        "default_value": "manual",
+        "default_value": "automatic",
         "return_format": "value",
         "allow_null": 0,
         "other_choice": 0,
         "save_other_choice": 0,
         "layout": "horizontal"
+      },
+      {
+        "key": "field_fbb_auto_message",
+        "label": "",
+        "name": "auto_message",
+        "type": "message",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_fbb_source",
+              "operator": "==",
+              "value": "automatic"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "message": "Automatic display books",
+        "new_lines": "wpautop",
+        "esc_html": 0
       },
       {
         "key": "field_fbb_manual_books",
@@ -62,35 +86,6 @@
         "elements": [
           "featured_image"
         ]
-      },
-      {
-        "key": "field_fbb_categories",
-        "label": "Select Categories",
-        "name": "book_categories",
-        "type": "taxonomy",
-        "instructions": "",
-        "required": 0,
-        "conditional_logic": [
-          [
-            {
-              "field": "field_fbb_source",
-              "operator": "==",
-              "value": "from_category"
-            }
-          ]
-        ],
-        "wrapper": {
-          "width": "",
-          "class": "",
-          "id": ""
-        },
-        "taxonomy": "category",
-        "add_term": 0,
-        "save_terms": 0,
-        "load_terms": 0,
-        "return_format": "id",
-        "field_type": "checkbox",
-        "allow_null": 0
       }
     ],
     "location": [

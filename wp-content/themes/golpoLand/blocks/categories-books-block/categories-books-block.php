@@ -59,6 +59,67 @@ $container_class = $show_slider ? 'swiper categories-books-swiper' : 'books-grid
 $item_class      = $show_slider ? 'swiper-slide book-item' : 'book-item';
 ?>
 
+<section class="books-section <?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?> aria-label="Books showcase">
+  <div class="holder">
+    <div class="section-header">
+      <h2 class="section-title">New Arrivals</h2>
+      <a href="/books" class="btn btn-ghost btn-sm">
+        View all
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="swiper book-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="/en/books/1" class="book-card" aria-label="Book 1">
+            <img src="https://covers.openlibrary.org/b/id/8739161-L.jpg" alt="Book cover 1" loading="lazy" />
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="/en/books/2" class="book-card" aria-label="Book 2">
+            <img src="https://covers.openlibrary.org/b/id/8228691-L.jpg" alt="Book cover 2" loading="lazy" />
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="/en/books/3" class="book-card" aria-label="Book 3">
+            <img src="https://covers.openlibrary.org/b/id/10909258-L.jpg" alt="Book cover 3" loading="lazy" />
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="/en/books/4" class="book-card" aria-label="Book 4">
+            <img src="https://covers.openlibrary.org/b/id/12006469-L.jpg" alt="Book cover 4" loading="lazy" />
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="/en/books/5" class="book-card" aria-label="Book 5">
+            <img src="https://covers.openlibrary.org/b/id/8739175-L.jpg" alt="Book cover 5" loading="lazy" />
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="/en/books/6" class="book-card" aria-label="Book 6">
+            <img src="https://covers.openlibrary.org/b/id/8091016-L.jpg" alt="Book cover 6" loading="lazy" />
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="/en/books/7" class="book-card" aria-label="Book 7">
+            <img src="https://covers.openlibrary.org/b/id/10527843-L.jpg" alt="Book cover 7" loading="lazy" />
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="/en/books/8" class="book-card" aria-label="Book 8">
+            <img src="https://covers.openlibrary.org/b/id/8739155-L.jpg" alt="Book cover 8" loading="lazy" />
+          </a>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+
 <section class="<?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?>>
   <div class="holder">
 

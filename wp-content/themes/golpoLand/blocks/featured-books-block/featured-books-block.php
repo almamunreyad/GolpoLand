@@ -16,61 +16,43 @@ if (!empty($is_preview)) {
 }
 
 // ── Resolve which posts to show ──────────────────────────────────
+global $post;
 $source = get_field('book_source') ?: 'manual';
 $posts  = [];
 
 if ($source === 'manual') {
 
   $posts = get_field('manual_books') ?: [];
-} else {
+} elseif ($source === 'automatic') {
 
-  $category_ids = get_field('book_categories') ?: [];
-
-  if (!empty($category_ids)) {
-    $posts = get_posts(array(
-      'post_type'      => 'post',
-      'posts_per_page' => -1,
-      'orderby'        => 'date',
-      'order'          => 'DESC',
-      'tax_query'      => array(
-        array(
-          'taxonomy' => 'category',
-          'field'    => 'term_id',
-          'terms'    => $category_ids,
-        ),
-      ),
-    ));
-  }
+  $posts = get_posts(array(
+    'post_type'      => 'post',
+    'posts_per_page' => 12,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+  ));
 }
 ?>
 
-<section class="<?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?>>
+<section class="books-section <?php echo esc_attr($class_name); ?>" <?php echo $anchor; ?> aria-label="Books showcase">
   <div class="holder">
 
     <?php if (!empty($posts)) : ?>
-      <div class="swiper featured-books-swiper">
+      <div class="swiper book-swiper">
         <div class="swiper-wrapper">
 
           <?php foreach ($posts as $post) :
-            $post_id    = is_object($post) ? $post->ID : $post;
-            $permalink  = get_permalink($post_id);
-            $title      = get_the_title($post_id);
-            $thumb_id   = get_post_thumbnail_id($post_id);
-            $thumb_url  = $thumb_id
-              ? wp_get_attachment_image_url($thumb_id, 'large')
-              : '';
-          ?>
+            $featured_img = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'full') : get_template_directory_uri() . '/_/images/placeholder.png'; ?>
             <div class="swiper-slide">
-              <a class="bookCover" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
-                <?php if ($thumb_url) : ?>
-                  <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy">
+              <a href="<?php the_permalink(); ?>" class="book-card" aria-label="<?php echo esc_attr(the_title()); ?>">
+                <?php if ($featured_img) : ?>
+                  <img src="<?php echo esc_url($featured_img); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" />
                 <?php endif; ?>
               </a>
             </div>
           <?php endforeach; ?>
 
         </div>
-
 
         <div class="swiper-pagination"></div>
       </div>

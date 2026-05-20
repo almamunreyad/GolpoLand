@@ -238,13 +238,32 @@ if (function_exists('acf_add_local_field_group')):
 				'required'      => 0,
 				'conditional_logic' => 0,
 				'choices'       => array(
-					'manual'        => 'Manual',
-					'from_category' => 'From Category',
+					'automatic' => 'Automatic',
+					'manual'    => 'Manual',
 				),
-				'default_value' => 'manual',
+				'default_value' => 'automatic',
 				'return_format' => 'value',
 				'allow_null'    => 0,
 				'layout'        => 'horizontal',
+			),
+			array(
+				'key'               => 'field_fbb_auto_message',
+				'label'             => '',
+				'name'              => 'auto_message',
+				'type'              => 'message',
+				'required'          => 0,
+				'conditional_logic' => array(
+					array(
+						array(
+							'field'    => 'field_fbb_source',
+							'operator' => '==',
+							'value'    => 'automatic',
+						),
+					),
+				),
+				'message'    => 'Automatic display books',
+				'new_lines'  => 'wpautop',
+				'esc_html'   => 0,
 			),
 			array(
 				'key'               => 'field_fbb_manual_books',
@@ -265,29 +284,6 @@ if (function_exists('acf_add_local_field_group')):
 				'filters'       => array('search'),
 				'return_format' => 'object',
 				'elements'      => array('featured_image'),
-			),
-			array(
-				'key'               => 'field_fbb_categories',
-				'label'             => 'Select Categories',
-				'name'              => 'book_categories',
-				'type'              => 'taxonomy',
-				'required'          => 0,
-				'conditional_logic' => array(
-					array(
-						array(
-							'field'    => 'field_fbb_source',
-							'operator' => '==',
-							'value'    => 'from_category',
-						),
-					),
-				),
-				'taxonomy'      => 'category',
-				'add_term'      => 0,
-				'save_terms'    => 0,
-				'load_terms'    => 0,
-				'return_format' => 'id',
-				'field_type'    => 'checkbox',
-				'allow_null'    => 0,
 			),
 		),
 		'location' => array(
