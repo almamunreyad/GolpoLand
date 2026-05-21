@@ -3,46 +3,6 @@
     "title": "Book Details",
     "fields": [
         {
-            "key": "field_book_written_by",
-            "label": "Written By",
-            "name": "written_by",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Author name",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "Author name",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_book_illustrated_by",
-            "label": "Illustrated By",
-            "name": "illustrated_by",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Illustrator name",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "Illustrator name",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_book_pages",
             "label": "Book Pages",
             "name": "book_pages",
@@ -87,7 +47,8 @@
                     "max_height": "",
                     "max_size": "",
                     "mime_types": "jpg, jpeg, png, webp",
-                    "preview_size": "medium"
+                    "preview_size": "medium",
+                    "parent_repeater": "field_book_pages"
                 },
                 {
                     "key": "field_book_page_text",
@@ -107,7 +68,8 @@
                     "maxlength": "",
                     "rows": 6,
                     "placeholder": "Write the page text here...",
-                    "new_lines": "br"
+                    "new_lines": "br",
+                    "parent_repeater": "field_book_pages"
                 }
             ]
         }
@@ -130,5 +92,8 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748000001
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1779344490
 }

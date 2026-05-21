@@ -46,7 +46,7 @@
     },
     "public": 1,
     "publicly_queryable": 1,
-    "hierarchical": 0,
+    "hierarchical": 1,
     "show_ui": 1,
     "show_in_menu": 1,
     "show_in_nav_menus": 1,
@@ -73,5 +73,5 @@
     "meta_box_sanitize_cb": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1748000004
+    "modified": 1779343281
 }

@@ -5,7 +5,6 @@
     <div class="holder">
 
         <?php if (have_posts()) : ?>
-
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4 gap-y-6">
                 <?php while (have_posts()) : the_post();
                     $featured_img = has_post_thumbnail()
@@ -20,11 +19,9 @@
             </div>
 
         <?php else : ?>
-
             <div class="text-center py-20 text-slate-400">
-                <p class="text-lg">No books found for this category.</p>
+                <p class="text-lg">No books found for this illustrator.</p>
             </div>
-
         <?php endif; ?>
 
     </div>

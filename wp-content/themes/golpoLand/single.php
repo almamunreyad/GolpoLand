@@ -418,24 +418,24 @@ if (have_posts()) : while (have_posts()) : the_post();
 
         <script>
           (function() {
-            const total  = <?php echo count($pages); ?>;
-            const texts  = <?php
-              $texts = array_map(fn($p) => $p['page_text'] ?? '', $pages);
-              echo json_encode(array_values($texts), JSON_UNESCAPED_UNICODE);
-            ?>;
+            const total = <?php echo count($pages); ?>;
+            const texts = <?php
+                          $texts = array_map(fn($p) => $p['page_text'] ?? '', $pages);
+                          echo json_encode(array_values($texts), JSON_UNESCAPED_UNICODE);
+                          ?>;
             const slides = document.querySelectorAll('[id^="slide-"]');
-            let current  = 0;
-            let audioOn  = true;
+            let current = 0;
+            let audioOn = true;
 
-            const prevBtn       = document.getElementById('prevBtn');
-            const nextBtn       = document.getElementById('nextBtn');
-            const startBtn      = document.getElementById('startBtn');
-            const pageNum       = document.getElementById('pageNum');
-            const progressFill  = document.getElementById('progressFill');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const startBtn = document.getElementById('startBtn');
+            const pageNum = document.getElementById('pageNum');
+            const progressFill = document.getElementById('progressFill');
             const progressLabel = document.getElementById('progressLabel');
-            const audioBtn      = document.getElementById('audioBtn');
-            const iconSpeak     = document.getElementById('iconSpeak');
-            const iconMute      = document.getElementById('iconMute');
+            const audioBtn = document.getElementById('audioBtn');
+            const iconSpeak = document.getElementById('iconSpeak');
+            const iconMute = document.getElementById('iconMute');
 
             // ── TTS ────────────────────────────────────────────────────
             const synth = window.speechSynthesis;
@@ -443,12 +443,12 @@ if (have_posts()) : while (have_posts()) : the_post();
             function speak(text) {
               if (!synth || !audioOn || !text) return;
               synth.cancel();
-              const utt  = new SpeechSynthesisUtterance(text);
-              utt.lang   = document.documentElement.lang || 'en-US';
-              utt.rate   = 0.92;
-              utt.pitch  = 1;
+              const utt = new SpeechSynthesisUtterance(text);
+              utt.lang = document.documentElement.lang || 'en-US';
+              utt.rate = 0.92;
+              utt.pitch = 1;
               utt.onstart = () => audioBtn.classList.add('speaking');
-              utt.onend   = () => {
+              utt.onend = () => {
                 audioBtn.classList.remove('speaking');
                 if (current < total) goTo(current + 1);
               };
@@ -464,8 +464,8 @@ if (have_posts()) : while (have_posts()) : the_post();
             // ── Audio toggle ───────────────────────────────────────────
             audioBtn.addEventListener('click', function() {
               audioOn = !audioOn;
-              iconSpeak.style.display = audioOn  ? '' : 'none';
-              iconMute.style.display  = !audioOn ? '' : 'none';
+              iconSpeak.style.display = audioOn ? '' : 'none';
+              iconMute.style.display = !audioOn ? '' : 'none';
               if (!audioOn) {
                 stopSpeech();
               } else if (current > 0) {
@@ -495,16 +495,27 @@ if (have_posts()) : while (have_posts()) : the_post();
                 speak(texts[current - 1]);
               }
 
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
             }
 
             if (startBtn) startBtn.addEventListener('click', () => goTo(1));
-            prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
-            nextBtn.addEventListener('click', () => { if (current < total) goTo(current + 1); });
+            prevBtn.addEventListener('click', () => {
+              if (current > 0) goTo(current - 1);
+            });
+            nextBtn.addEventListener('click', () => {
+              if (current < total) goTo(current + 1);
+            });
 
             document.addEventListener('keydown', function(e) {
-              if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { if (current < total) goTo(current + 1); }
-              if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { if (current > 0)     goTo(current - 1); }
+              if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                if (current < total) goTo(current + 1);
+              }
+              if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                if (current > 0) goTo(current - 1);
+              }
             });
 
             window.addEventListener('beforeunload', stopSpeech);
@@ -530,8 +541,8 @@ if (have_posts()) : while (have_posts()) : the_post();
     $all_text   = implode(' ', array_map(fn($p) => $p['page_text'] ?? '', $book_pages));
     $word_count = $all_text ? str_word_count(strip_tags($all_text)) : 0;
     $image_count = count(array_filter($book_pages, fn($p) => !empty($p['page_image'])));
-    $written_by     = get_field('written_by');
-    $illustrated_by = get_field('illustrated_by');
+    $written_by_terms = get_the_terms(get_the_ID(), 'author-by') ?: [];
+    $illustrated_by_terms = get_the_terms(get_the_ID(), 'illustrated') ?: [];
     $categories     = get_the_category();
     $featured_img   = get_the_post_thumbnail_url(get_the_ID(), 'full');
     $excerpt        = get_the_excerpt();
@@ -646,17 +657,29 @@ if (have_posts()) : while (have_posts()) : the_post();
 
             <!-- Author / Illustrator -->
             <div class="flex flex-col gap-3 pt-1">
-              <?php if ($written_by) : ?>
+              <?php if (!empty($written_by_terms)) : ?>
                 <div>
                   <p class="text-[13px] text-slate-400 font-medium mb-0.5">Written by</p>
-                  <p class="text-[15px] font-semibold text-[#7c3aed]"><?php echo esc_html($written_by); ?></p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <?php foreach ($written_by_terms as $term) : ?>
+                      <a href="<?php echo esc_url(get_term_link($term)); ?>" class="text-[15px] font-semibold text-[#7c3aed] hover:text-[#6d28d9] transition-colors">
+                        <?php echo esc_html($term->name); ?>
+                      </a>
+                    <?php endforeach; ?>
+                  </div>
                 </div>
               <?php endif; ?>
 
-              <?php if ($illustrated_by) : ?>
+              <?php if (!empty($illustrated_by_terms)) : ?>
                 <div>
                   <p class="text-[13px] text-slate-400 font-medium mb-0.5">Illustrated by</p>
-                  <p class="text-[15px] font-semibold text-[#7c3aed]"><?php echo esc_html($illustrated_by); ?></p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <?php foreach ($illustrated_by_terms as $term) : ?>
+                      <a href="<?php echo esc_url(get_term_link($term)); ?>" class="text-[15px] font-semibold text-[#7c3aed] hover:text-[#6d28d9] transition-colors">
+                        <?php echo esc_html($term->name); ?>
+                      </a>
+                    <?php endforeach; ?>
+                  </div>
                 </div>
               <?php endif; ?>
             </div>
