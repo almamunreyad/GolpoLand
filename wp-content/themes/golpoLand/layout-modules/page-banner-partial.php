@@ -1,18 +1,13 @@
-<?php
-$show_banner = get_field('show_banner');
-$banner_type = get_field('banner_type');
-$floating_header = get_field('floating_header');
+<?php if (is_front_page()): ?>
 
-if ($show_banner && ($banner_type == 'full_banner' && $floating_header)) :
-  require(get_template_directory() . '/layout-modules/_full-banner-float.php');
+    <?php require(get_template_directory() . '/layout-modules/_home-banner.php'); ?>
 
-elseif ($show_banner && ($banner_type == 'full_banner' && !$floating_header)) :
-  require(get_template_directory() . '/layout-modules/_normal-banner.php');
+<?php elseif (is_category()): ?>
 
-elseif ($show_banner && ($banner_type == 'no_banner')) :
-  require(get_template_directory() . '/layout-modules/_no-banner.php');
+    <?php require(get_template_directory() . '/layout-modules/_banner-category.php'); ?>
 
-elseif (is_singular() && !is_page()):
-  require(get_template_directory() . '/layout-modules/_single-banner.php');
+<?php elseif (is_singular('post')): ?>
 
-endif;
+    <?php require(get_template_directory() . '/layout-modules/_banner-books.php'); ?>
+
+<?php endif; ?>

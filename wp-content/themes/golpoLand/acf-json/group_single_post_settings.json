@@ -1,0 +1,134 @@
+{
+    "key": "group_single_post_settings",
+    "title": "Book Details",
+    "fields": [
+        {
+            "key": "field_book_written_by",
+            "label": "Written By",
+            "name": "written_by",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Author name",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Author name",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_book_illustrated_by",
+            "label": "Illustrated By",
+            "name": "illustrated_by",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Illustrator name",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Illustrator name",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_book_pages",
+            "label": "Book Pages",
+            "name": "book_pages",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add each page of the book — one image and one block of text per page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "+ Add Page",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_book_page_image",
+                    "label": "Page Image",
+                    "name": "page_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "jpg, jpeg, png, webp",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_book_page_text",
+                    "label": "Page Text",
+                    "name": "page_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 6,
+                    "placeholder": "Write the page text here...",
+                    "new_lines": "br"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1748000001
+}
